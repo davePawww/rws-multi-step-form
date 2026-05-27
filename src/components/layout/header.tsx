@@ -17,14 +17,18 @@ export default function Header() {
       transition={{ duration: 0.8, ease: 'easeIn' }}
       className="flex flex-col items-center justify-between gap-1.5 md:flex-row md:gap-0"
     >
-      <h1 className="font-semibold">00-project-title</h1>
+      <h1 className="font-semibold">09-multi-step-form</h1>
       <div className="flex items-center gap-1">
         <Button variant={'secondary'} onClick={toggleTheme} aria-label="Toggle theme">
           {theme === 'light' ? <SunIcon /> : <MoonIcon />}
         </Button>
         <Separator orientation="vertical" />
         <Button variant={'outline'} asChild>
-          <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/davePawww/rws-multi-step-form"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <FaGithub /> Code
           </a>
         </Button>
