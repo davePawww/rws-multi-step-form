@@ -125,7 +125,7 @@ export default function StepOne() {
         <Button variant="outline" disabled>
           <ArrowLeft /> Previous
         </Button>
-        <Button variant="outline" onClick={() => void handleNext}>
+        <Button variant="outline" onClick={() => void handleNext()}>
           Next <ArrowRight />
         </Button>
       </CardFooter>
