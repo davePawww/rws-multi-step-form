@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -46,6 +47,8 @@ export default function StepOne() {
       updateStepOne(form.getValues());
       updateProgress(25);
       updateCurrentStep('address');
+    } else {
+      toast.error('Please fill up all required fields.');
     }
   };
 
@@ -55,13 +58,14 @@ export default function StepOne() {
         <CardTitle>Personal Information</CardTitle>
         <CardDescription className="mt-2">
           <Field>
-            <FieldLabel htmlFor="step-progress" className="text-xs">
+            <p id="progress-bar-label" className="text-xs font-medium">
               Step 1 of 4
-            </FieldLabel>
+            </p>
             <Progress
               id="step-progress"
               role="progressbar"
               aria-label="progress-bar"
+              aria-labelledby="progress-bar"
               value={progress}
             />
           </Field>

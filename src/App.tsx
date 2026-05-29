@@ -2,6 +2,7 @@ import Container from '@/components/layout/container';
 import Content from '@/components/layout/content';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import { Toaster } from '@/components/ui/sonner';
 import { useThemeSync } from '@/hooks/use-theme-sync';
 import MultiStepForm from '@/pages/multi-step-form';
 
@@ -15,6 +16,7 @@ function App() {
         <MultiStepForm />
       </Content>
       <Footer />
+      <Toaster />
     </Container>
   );
 }
