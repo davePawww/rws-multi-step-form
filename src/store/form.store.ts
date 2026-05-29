@@ -5,7 +5,7 @@ import type { FormStore } from '@/types/form.types';
 export const useMultiStepForm = create<FormStore>((set) => ({
   currentStep: 'personal-info',
   updateCurrentStep: (step) => set({ currentStep: step }),
-  progress: 0,
+  progress: 25,
   updateProgress: (value) => set({ progress: value }),
   stepOne: {
     name: '',

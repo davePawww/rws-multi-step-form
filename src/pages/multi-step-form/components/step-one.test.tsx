@@ -60,7 +60,7 @@ describe('StepOne', () => {
       email: 'email@company.com',
       phone: '+12025550123',
     });
-    expect(state.progress).toBe(25);
+    expect(state.progress).toBe(50);
     expect(state.currentStep).toBe('address');
   });
 });

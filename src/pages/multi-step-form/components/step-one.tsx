@@ -45,7 +45,7 @@ export default function StepOne() {
     const valid = await form.trigger();
     if (valid) {
       updateStepOne(form.getValues());
-      updateProgress(25);
+      updateProgress(50);
       updateCurrentStep('address');
     } else {
       toast.error('Please fill up all required fields.');

@@ -85,7 +85,7 @@ export default function StepTwo() {
     const valid = await form.trigger();
     if (valid) {
       updateStepTwo(form.getValues());
-      updateProgress(50);
+      updateProgress(75);
       updateCurrentStep('preferences');
     } else {
       toast.error('Please fill up all required fields.');
