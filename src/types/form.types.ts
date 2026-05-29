@@ -6,6 +6,14 @@ export type StepOne = {
   phone: string;
 };
 
+export type StepTwo = {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+};
+
 export type FormStore = {
   currentStep: Step;
   updateCurrentStep: (step: Step) => void;
@@ -13,4 +21,6 @@ export type FormStore = {
   updateProgress: (value: number) => void;
   stepOne: StepOne;
   updateStepOne: (details: StepOne) => void;
+  stepTwo: StepTwo;
+  updateStepTwo: (details: StepTwo) => void;
 };

@@ -19,7 +19,7 @@ import { Progress } from '@/components/ui/progress';
 import { useMultiStepForm } from '@/store/form.store';
 
 const stepOneSchema = z.object({
-  name: z.string().min(1, 'Name should not be empty.'),
+  name: z.string().trim().min(1, 'Name should not be empty.').max(50, 'Name is too long'),
   email: z.email('Email is invalid. Please add a valid email.'),
   phone: z.e164('Phone number is invalid. Please add a valid phone number'),
 });
@@ -127,7 +127,7 @@ export default function StepOne() {
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <Button variant="outline" disabled>
-          <ArrowLeft /> Previous
+          <ArrowLeft /> Prev
         </Button>
         <Button variant="outline" onClick={() => void handleNext()}>
           Next <ArrowRight />

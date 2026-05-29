@@ -13,4 +13,12 @@ export const useMultiStepForm = create<FormStore>((set) => ({
     phone: '',
   },
   updateStepOne: (details) => set({ stepOne: details }),
+  stepTwo: {
+    street: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+  },
+  updateStepTwo: (details) => set({ stepTwo: details }),
 }));
