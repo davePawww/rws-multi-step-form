@@ -14,6 +14,12 @@ export type StepTwo = {
   country: string;
 };
 
+export type StepThree = {
+  newsletter: boolean;
+  notifications: boolean;
+  theme: 'light' | 'dark';
+};
+
 export type FormStore = {
   currentStep: Step;
   updateCurrentStep: (step: Step) => void;
@@ -23,4 +29,6 @@ export type FormStore = {
   updateStepOne: (details: StepOne) => void;
   stepTwo: StepTwo;
   updateStepTwo: (details: StepTwo) => void;
+  stepThree: StepThree;
+  updateStepThree: (details: StepThree) => void;
 };

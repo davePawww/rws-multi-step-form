@@ -198,7 +198,7 @@ export default function StepTwo() {
         </form>
       </CardContent>
       <CardFooter className="flex items-center justify-between">
-        <Button variant="outline" onClick={() => void handlePrev()}>
+        <Button variant="outline" onClick={handlePrev}>
           <ArrowLeft /> Prev
         </Button>
         <Button variant="outline" onClick={() => void handleNext()}>
