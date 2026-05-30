@@ -1,13 +1,31 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { toast } from 'sonner';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import StepTwo from '@/pages/multi-step-form/components/step-two';
 import { useMultiStepForm } from '@/store/form.store';
 
+vi.mock('sonner', () => ({
+  toast: {
+    error: vi.fn(),
+  },
+}));
+
 describe('StepTwo', () => {
   beforeEach(() => {
     cleanup();
+    vi.clearAllMocks();
+
+    useMultiStepForm.setState({
+      stepTwo: {
+        street: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: '',
+      },
+    });
   });
 
   it('shows an error message when street input is invalid', async () => {
@@ -67,6 +85,17 @@ describe('StepTwo', () => {
     expect(await screen.findByText('Country can only contain letters.'));
   });
 
+  it('proceeds to the previous step when prev button is clicked', async () => {
+    const user = userEvent.setup();
+    render(<StepTwo />);
+
+    await user.click(screen.getByRole('button', { name: /prev/i }));
+
+    const state = useMultiStepForm.getState();
+    expect(state.progress).toBe(25);
+    expect(state.currentStep).toBe('personal-info');
+  });
+
   it('proceeds to the next step when everything is valid', async () => {
     const user = userEvent.setup();
     render(<StepTwo />);
@@ -89,5 +118,14 @@ describe('StepTwo', () => {
     });
     expect(state.progress).toBe(75);
     expect(state.currentStep).toBe('preferences');
+  });
+
+  it('shows a toast when the next button is clicked and something from the form was invalid', async () => {
+    const user = userEvent.setup();
+    render(<StepTwo />);
+
+    await user.click(screen.getByRole('button', { name: /next/i }));
+
+    expect(toast.error).toHaveBeenCalledWith('Please fill up all required fields.');
   });
 });

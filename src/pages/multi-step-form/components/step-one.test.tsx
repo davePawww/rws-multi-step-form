@@ -1,13 +1,28 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { toast } from 'sonner';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import StepOne from '@/pages/multi-step-form/components/step-one';
 import { useMultiStepForm } from '@/store/form.store';
 
+vi.mock('sonner', () => ({
+  toast: {
+    error: vi.fn(),
+  },
+}));
+
 describe('StepOne', () => {
   beforeEach(() => {
     cleanup();
+    vi.clearAllMocks();
+    useMultiStepForm.setState({
+      stepOne: {
+        email: '',
+        name: '',
+        phone: '',
+      },
+    });
   });
 
   it('shows an error when name is touched and empty', async () => {
@@ -62,5 +77,14 @@ describe('StepOne', () => {
     });
     expect(state.progress).toBe(50);
     expect(state.currentStep).toBe('address');
+  });
+
+  it('shows a toast when the next button is clicked and there is still an invalid field', async () => {
+    const user = userEvent.setup();
+    render(<StepOne />);
+
+    await user.click(screen.getByRole('button', { name: /next/i }));
+
+    expect(toast.error).toHaveBeenCalledWith('Please fill up all required fields.');
   });
 });
